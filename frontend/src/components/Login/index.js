@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import './index.css'
 import axios from 'axios';
 const Login = () =>{ 
@@ -75,10 +75,15 @@ const Login = () =>{
                        onChange={(e)=>setPassword(e.target.value)} 
                        required  />
 
-                <button className='btn btn-primary mt-3' type='submit' disabled={isLoading}>{isLoading?'Loggin in ...':'Login'}</button>
-                {error && <div className='alert alert-danger mt-3 text-center'>{error}</div>}
-                {success && <div className='alert alert-success mt-3 text-center'>{success}</div>} 
+                <button className='btn btn-primary mt-3' type='submit' disabled={isLoading}>{isLoading?'Loggin in ...':'Login'}</button> 
             </form>
+            {error && <div className='alert alert-danger mt-3 text-center'>{error}</div>}
+            {success && <div className='alert alert-success mt-3 text-center'>{success}</div>}
+
+            <div className="text-center mt-3">
+              <span>Don't have an account? </span>
+              <Link to="/register">Register here</Link>
+            </div>
         </div>
         </div>
     )
