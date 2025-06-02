@@ -1,5 +1,6 @@
 import './index.css'
-import { useState,useNavigate } from 'react';
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 const Register = () =>{
     const [name, setName] = useState('');
@@ -59,7 +60,7 @@ const Register = () =>{
     return(
         <div>
             <h3>Register App</h3>
-            <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="d-flex flex-column justify-content-center align-items-center vh-100">
                 <form className="d-flex flex-column w-50" onSubmit={handleSubmit}>
                     <label htmlFor='inputName'>Name</label>
                     <input type="text" id="inputName" value={name} onChange={(e)=>setName(e.target.value)} required />

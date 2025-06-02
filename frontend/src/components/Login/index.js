@@ -1,4 +1,5 @@
-import { useState,useNavigate } from 'react'
+import { useState } from 'react'
+import {useNavigate} from 'react-router-dom';
 import './index.css'
 import axios from 'axios';
 const Login = () =>{ 
@@ -7,6 +8,7 @@ const Login = () =>{
     const [password, setPassword] = useState('')
     const [success, setSuccess] = useState('')
     const [isLoading, setLoading] = useState(false)
+    const navigate = useNavigate();
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setLoading(true)
@@ -23,7 +25,7 @@ const Login = () =>{
         const response = await axios.post(url, {email,password});
         const token = response.data.user.token;
         if(token){
-            const navigate = useNavigate();
+            
             localStorage.setItem('token',token)
             setSuccess('Login Successful');
             setLoading(false);
@@ -31,18 +33,32 @@ const Login = () =>{
             
         }
         else{
-            setError('Login Failed:',response.data.message);
+            setError(response.data.message || "Login failed token not found");
             setLoading(false);
             return;
         }
         }
         catch(e){
-            setError(e)
+            console.error('login error details:', e);
+            setLoading(false);
+            if (e.response){
+                setError(e.response.data.message || 'Login failed. Please check your inputs');
+            }
+            else if (e.request){
+                setError('Cannot connect to the server. Please check your internet connection or try again later.');
+            }
+            else{
+                setError('An unexpected error occurred. Please try again.')
+            }
+
         }
     }
 
     return(
-        <div className="d-flex justify-content-center align-items-center vh-100">
+        <div>
+            <h1>Login page</h1>
+
+            <div className="d-flex flex-column justify-content-center align-items-center vh-100">
             <form className="d-flex flex-column w-50" onSubmit={handleSubmit}>
 
                 <label htmlFor='emailInput'>Email</label>
@@ -60,9 +76,10 @@ const Login = () =>{
                        required  />
 
                 <button className='btn btn-primary mt-3' type='submit' disabled={isLoading}>{isLoading?'Loggin in ...':'Login'}</button>
-                {error &&<p className='text-red-500 mt-2'>{error}</p>}
-                {success && <p className='text-green-500 mt-2'>{success}</p>} 
+                {error && <div className='alert alert-danger mt-3 text-center'>{error}</div>}
+                {success && <div className='alert alert-success mt-3 text-center'>{success}</div>} 
             </form>
+        </div>
         </div>
     )
 }
