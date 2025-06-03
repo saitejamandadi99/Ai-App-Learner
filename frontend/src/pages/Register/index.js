@@ -1,6 +1,7 @@
 import './index.css'
 import { useState } from 'react';
 import {useNavigate,Link} from 'react-router-dom';
+import Cookie from 'js-cookie';
 import axios from 'axios';
 const Register = () =>{
     const [name, setName] = useState('');
@@ -32,7 +33,7 @@ const Register = () =>{
             const response = await axios.post(url, {name, email, password});
             const token = response.data.user.token;
             if(token){
-                localStorage.setItem('token', token);
+                Cookie.set('token', token, {expires:7});
                 setSuccess(response.data.message || 'Registration successful');
                 setLoading(false);
                 navigate('/');

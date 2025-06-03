@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {useNavigate,Link} from 'react-router-dom';
+import Cookie from 'js-cookie'
 import './index.css'
 import axios from 'axios';
 const Login = () =>{ 
@@ -25,8 +26,7 @@ const Login = () =>{
         const response = await axios.post(url, {email,password});
         const token = response.data.user.token;
         if(token){
-            
-            localStorage.setItem('token',token)
+            Cookie.set('token', token, { expires: 7 }); // Set cookie with 7 days expiration
             setSuccess('Login Successful');
             setLoading(false);
             navigate('/');
