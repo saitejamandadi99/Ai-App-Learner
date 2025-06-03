@@ -36,7 +36,7 @@ const Register = () =>{
                 Cookie.set('token', token, {expires:7});
                 setSuccess(response.data.message || 'Registration successful');
                 setLoading(false);
-                navigate('/');
+                navigate('/mainpage');
             }
             else{
                 setError(response.data.message || 'Registration failed');

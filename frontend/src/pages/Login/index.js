@@ -29,7 +29,7 @@ const Login = () =>{
             Cookie.set('token', token, { expires: 7 }); // Set cookie with 7 days expiration
             setSuccess('Login Successful');
             setLoading(false);
-            navigate('/');
+            navigate('/mainpage');
             
         }
         else{
