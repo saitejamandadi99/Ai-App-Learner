@@ -28,6 +28,7 @@ app.get('/', (req,res)=>{
     res.send('Application is running in the backend. ')
 })
 app.use('/api/users', require('./routes/authRoutes'));
+app.use('/api/lessonplan', require('./routes/aiRoutes'));
 app.listen(port, ()=>{
     console.log(`Application is running on http://localhost:${port}`)
 })
