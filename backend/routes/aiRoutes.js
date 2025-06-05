@@ -1,15 +1,15 @@
 const express = require('express');
 const {GoogleGenerativeAI} = require('@google/generative-ai');
 const authMiddleware = require('../middleware/authMiddleware');
-
+const History = require('../models/History'); 
 const router  = express.Router();
 
 const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 const model = genAi.getGenerativeModel({model:"gemini-pro"});
-console.log('AI Model initialized successfully', model);
+console.log('AI Model initialized successfully', model);    
 
 router.post('/generate', authMiddleware, async (req, res)=>{
-    const {prompt} = req.body;
+    const {prompt, topic, grade} = req.body;
     if(!prompt){
         return res.status(400).json({message:'Prompt is required to generate a lesson plan.'});
     }
@@ -18,7 +18,16 @@ router.post('/generate', authMiddleware, async (req, res)=>{
         const response = result.response;
         console.log('AI Response:', response);
         const text = response.text();
-
+        if (!text) {
+            return res.status(500).json({message: 'Failed to generate lesson plan. Please try again.'});
+        }
+        const historyEntry = new History({
+            userId: req.user._id,
+            topic:topic,
+            grade:grade,
+            lessonPlan:text
+        })
+        await historyEntry.save();
         res.status(200).json({message:'Lessson plan generated successfully',lessonPlan: text});
     } catch (error) {
         console.error('Error generating lesson plan:', error);

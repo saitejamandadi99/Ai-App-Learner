@@ -10,9 +10,9 @@ const MainPage = () => {
     const [question, setQuestion] = useState('');
     const [objectives, setObjectives] = useState('');
     const [assessment, setAssessment] = useState('');
-    const [lessonPlan, setLessonPlan] = useState(''); // Stores the final lesson plan from AI
+    const [lessonPlan, setLessonPlan] = useState(''); 
     const [error, setError] = useState('');
-    const [isLoading, setLoading] = useState(false); // Renamed from 'loading' for consistency
+    const [isLoading, setLoading] = useState(false); 
     const [success, setSuccess] = useState('');
     // Removed redundant aiResponse state
 
@@ -48,7 +48,7 @@ const MainPage = () => {
         try {
             const url = 'http://localhost:5000/api/lessonplan/generate';
 
-            const response = await axios.post(url, { prompt }, {
+            const response = await axios.post(url, { prompt, topic, grade }, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
@@ -58,6 +58,11 @@ const MainPage = () => {
             if (response.data && response.data.lessonPlan) {
                 setLessonPlan(response.data.lessonPlan);
                 setSuccess('Lesson plan generated successfully!');
+                setTopic('');
+                setGrade('');
+                setQuestion('');
+                setObjectives('');
+                setAssessment('');
             } else {
                 setError('Failed to generate lesson plan: Invalid response format from server.');
             }
@@ -72,12 +77,7 @@ const MainPage = () => {
                 setError('An unexpected error occurred. Please try again.');
             }
         } finally {
-            setLoading(false);
-            setTopic('');
-            setGrade('');
-            setQuestion('');
-            setObjectives('');
-            setAssessment('');
+            setLoading(false);   
         }
     };
 
