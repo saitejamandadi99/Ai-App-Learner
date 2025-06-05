@@ -7,7 +7,7 @@ import MainPage from './pages/MainPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Routes, Route} from 'react-router-dom';
 import ProtectedRoutes from './components/ProtectedRoutes/index.js';
-
+import HistoryPage from './pages/History'
 function App() {
   return (
     <>
@@ -17,6 +17,7 @@ function App() {
         <Route exact path = '/register' element = {<Register />} />
         <Route exact path = '/login' element = {<Login />} />
         <Route exact path = '/mainpage' element = {<ProtectedRoutes><MainPage /></ProtectedRoutes>} />
+        <Route exact path = '/history' element = {<ProtectedRoutes><HistoryPage /> </ProtectedRoutes>} />
       </Routes>
     </>
   );

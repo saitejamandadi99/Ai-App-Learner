@@ -42,4 +42,22 @@ router.post('/generate', authMiddleware, async (req, res)=>{
     }
 })
 
+router.get('/history', authMiddleware, async(req, res)=>{
+    try{
+        const history = await History.find({userId: req.user._id}).sort({createdAt:-1})
+        res.status(200).json({message: 'History fetched successfully', history: history});
+
+    }
+    catch(error){
+        console.error('Error fetching history:', error);
+        if (error.response) {
+            return res.status(500).json({message: error.response.data.message || 'Failed to fetch history. Please try again.'});
+        } else if (error.request) {
+            return res.status(500).json({message: 'Cannot connect to the server. Please check your network connection or try again later.'});
+        } else {
+            return res.status(500).json({message: 'An unexpected error occurred. Please try again.'});
+        }
+    }   
+})
+
 module.exports = router
