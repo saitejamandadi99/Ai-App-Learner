@@ -5,7 +5,7 @@ const History = require('../models/History');
 const router  = express.Router();
 
 const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-const model = genAi.getGenerativeModel({model:"gemini-pro"});
+const model = genAi.getGenerativeModel({ model: "gemini-1.5-flash" });
 console.log('AI Model initialized successfully', model);    
 
 router.post('/generate', authMiddleware, async (req, res)=>{
