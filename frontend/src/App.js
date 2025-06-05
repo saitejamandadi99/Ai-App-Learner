@@ -8,10 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Routes, Route} from 'react-router-dom';
 import ProtectedRoutes from './components/ProtectedRoutes/index.js';
 import HistoryPage from './pages/History'
+import Header from './components/Navbar/index.js';
 function App() {
   return (
     <>
     <title>AI Learner</title>
+    <Header />
       <Routes>
         <Route exact path = '/' element = {<LandingPage />} />
         <Route exact path = '/register' element = {<Register />} />
