@@ -14,12 +14,24 @@ const MainPage = () => {
     const [error, setError] = useState('');
     const [isLoading, setLoading] = useState(false); 
     const [success, setSuccess] = useState('');
-    // Removed redundant aiResponse state
+    
 
-    const prompt = `You are an AI teacher. Create a Lesson Plan based on the following inputs:
-    Topic: ${topic}, Grade: ${grade}, Question: ${question || `explain everything about ${topic}`}, Learning Objectives: ${objectives || `Provide a short description of ${topic}`}, Assessment: ${assessment || `ask me a question on this ${topic} `}.
-    Provide a detailed lesson plan that includes objectives, materials needed, activities, and assessment methods.
-    Please format the output using Markdown for clear headings, bullet points, etc.`; 
+    const prompt = `You are an AI tutor designed to help a student learn. Based on the following inputs, create a comprehensive and easy-to-understand study guide or explanation for a student:
+            Topic: ${topic}
+            Grade Level: ${grade}
+            Main Question/Focus: ${question || `Explain everything about ${topic}.`}
+            Key Learning Objectives: ${objectives || `Provide a short description of ${topic}.`}
+            Assessment Goal: ${assessment || `Prepare me for a question on ${topic}.`}
+
+            Your output should be a detailed explanation of the topic, breaking it down into key concepts. Include:
+            - A clear introduction to the topic.
+            - Simple explanations of core ideas.
+            - Relevant examples to illustrate concepts.
+            - Key vocabulary definitions.
+            - A summary of the main points.
+            - A relevant practice question or activity related to the assessment goal.
+
+            Please format your response using Markdown for clear headings, bullet points, bold text, and code blocks (if applicable for the topic). Aim for a friendly and encouraging tone suitable for a student.`; 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
