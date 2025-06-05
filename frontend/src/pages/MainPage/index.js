@@ -1,5 +1,5 @@
 import './index.css';
-import { useState } from 'react';
+import { useState} from 'react';
 import Cookie from 'js-cookie';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
@@ -14,6 +14,7 @@ const MainPage = () => {
     const [error, setError] = useState('');
     const [isLoading, setLoading] = useState(false); 
     const [success, setSuccess] = useState('');
+    
     
 
     const prompt = `You are an AI tutor designed to help a student learn. Based on the following inputs, create a comprehensive and easy-to-understand study guide or explanation for a student:
@@ -135,9 +136,13 @@ const MainPage = () => {
 
                 {lessonPlan && (
                     <div className='lessonPlan mt-4 p-3 border rounded shadow-sm bg-light'>
-                        <h2>Generated Lesson Plan</h2>
-                        
-                        <ReactMarkdown>{lessonPlan}</ReactMarkdown>
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h2>Generated Lesson Plan</h2>
+                            
+                        </div>
+                        <div>
+                            <ReactMarkdown>{lessonPlan}</ReactMarkdown>
+                        </div>
                     </div>
                 )}
             </div>
