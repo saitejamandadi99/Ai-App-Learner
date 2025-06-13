@@ -4,6 +4,7 @@ import Cookie from 'js-cookie';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 
+
 const MainPage = () => {
     const [topic, setTopic] = useState('');
     const [grade, setGrade] = useState('');
@@ -109,6 +110,7 @@ const MainPage = () => {
                         required
                         onChange={(e) => setTopic(e.target.value)}
                         value={topic}
+                        className='border border-gray-300 p-2 rounded w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                     />
                     <label htmlFor='gradeInput'>Grade</label>
                     <input
@@ -129,6 +131,7 @@ const MainPage = () => {
                     <button type="submit" id='generateButton' disabled={isLoading}>
                         {isLoading ? 'Generating...' : 'Generate'}
                     </button>
+
                 </form>
                 
                 {error && <div className='alert alert-danger mt-3 text-center'>{error}</div>}
