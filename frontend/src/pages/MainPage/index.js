@@ -108,7 +108,7 @@ const MainPage = () => {
         }
 
         try {
-            const url = 'http://localhost:5000/api/lessonplan/generate';
+            const url = 'https://ai-app-learner-backend.onrender.com/api/lessonplan/generate';
             const response = await axios.post(
                 url,
                 { prompt, topic, grade },

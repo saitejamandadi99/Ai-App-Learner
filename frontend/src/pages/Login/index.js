@@ -25,7 +25,7 @@ const Login = () => {
         return
       }
 
-      const url = 'http://localhost:5000/api/users/login'
+      const url = 'https://ai-app-learner-backend.onrender.com/api/users/login'
       const response = await axios.post(url, { email, password })
       const token = response.data.user.token
 

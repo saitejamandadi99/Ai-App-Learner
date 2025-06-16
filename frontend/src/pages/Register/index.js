@@ -33,7 +33,7 @@ const Register = () => {
     }
 
     try {
-      const url = 'http://localhost:5000/api/users/register'
+      const url = 'https://ai-app-learner-backend.onrender.com/api/users/register'
       const response = await axios.post(url, { name, email, password })
       const token = response.data.user.token
 

@@ -26,7 +26,7 @@ const HistoryPage = () => {
         setSelectedItem(null);
 
         try {
-            const url = 'http://localhost:5000/api/lessonplan/history';
+            const url = 'https://ai-app-learner-backend.onrender.com/api/lessonplan/history';
             const response = await axios.get(url, {
                 headers: {
                     'Content-Type': 'application/json',
