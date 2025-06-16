@@ -16,31 +16,76 @@ const MainPage = () => {
     const [isLoading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
 
-    const prompt = `You are an expert AI lesson planner.
+    const prompt = `
+            You are a helpful AI tutor assisting a student in learning.
 
-Generate a structured lesson plan for a classroom teacher based on the following inputs:
+            Generate a two-part output IN **MARKDOWN FORMAT** so it displays cleanly in a Markdown renderer (headings, bold, bullet points, code blocks, etc.).
 
-Topic: ${topic}
-Grade Level: ${grade}
-Learning Objective: ${objectives || `Teach the core concepts of ${topic}.`}
-Main Question/Focus: ${question || `What is ${topic}?`}
-Assessment Goal: ${assessment || `Evaluate if the student has understood ${topic}.`}
+            ---
 
-Your output should follow this format:
+            ## Understanding ${topic}
 
-1. **Lesson Title**
-2. **Grade Level**
-3. **Objective**
-4. **Materials Needed**
-5. **Warm-up Activity**
-6. **Main Instruction (with timing if possible)**
-7. **Examples / Demonstration**
-8. **Practice Activity**
-9. **Assessment Questions**
-10. **Conclusion / Wrap-up**
+            **Topic:** ${topic}  
+            **Grade Level:** ${grade}  
+            **Main Focus / Student’s Question:** ${question}  
+            **Learning Goals:** ${objectives}
 
-Use Markdown for formatting. Make it clear, well-structured, and suitable for a teacher to directly use in class.
-`;
+            ---
+
+            ## Part 1: Study Roadmap / Lesson Plan
+
+            **Key Learning Objectives (Rephrased & Clear):**
+
+            * Break down ${objectives} into concise, age-appropriate bullet points that are measurable and achievable at the ${grade} level.
+
+            **Suggested Learning Flow:**
+
+            1. **Introduction (15 min):** Recommend a short video or describe what an intro should include to build curiosity around ${topic}.
+            2. **Core Concepts (45 min):** Explain key terms and definitions, and suggest reading material (or generate a concise lesson if no text exists).
+            3. **Concept Application (30 min):** Recommend exercises or tasks that help apply the concepts practically.
+            4. **Visual Reinforcement (15 min):** Suggest diagrams or analogies that help students visualize ${topic}.
+            5. **Self-Assessment (15 min):** Ask one practice question related to ${topic}, and encourage the student to revisit unclear areas.
+            6. **Optional Exploration:** Encourage looking into real-life examples or related experiments.
+
+            **Activities/Checkpoints:**
+
+            - Take structured notes  
+            - Complete practice tasks or quiz  
+            - Create a diagram or summary chart  
+            - Answer the self-assessment question  
+            - Discuss with a peer or mentor
+
+            **Time Estimate:** Approx. 2 hours (can be adjusted)
+
+            **Bonus Visual Aid or Analogy Example:**
+
+            *If topic is Photosynthesis:*  
+            "Imagine a plant as a solar-powered kitchen turning air and water into sugar."
+
+            ---
+
+            ## Part 2: Lesson Summary / Explanation
+
+            **Engaging Introduction:**
+
+            Hey there, curious learner! Ready to dive into ${topic}? It’s more fascinating than you think—let’s explore!
+
+            **Core Concepts Explained:**
+
+            Provide a clear and engaging explanation of the ${topic}, aligned with ${grade} level, using simple analogies where possible. Include step-by-step logic if it’s a process or a cause-effect structure if it's a concept.
+
+            **Key Terms Glossary:**
+
+            List and explain key terms relevant to ${topic}, using age-appropriate definitions.
+
+            **Summary:**
+
+            Give a brief summary that wraps up the main points from above. Reinforce how ${topic} connects to real-world applications or why it matters.
+
+            **Practice Question:**
+
+            Ask one thoughtful question related to ${topic} that checks understanding of the learning objectives.`;
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
