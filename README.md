@@ -7,7 +7,7 @@
 ## 🔥 Live Demo
 
 🌐 **[Click here to view the deployed app](https://ai-app-learner-frontend.onrender.com)**  
-*(Add your live link above!)*
+
 
 ---
 
@@ -44,7 +44,6 @@
 | CSS          | Styles and layout                       |
 | Bootstrap    | UI component library                    |
 | Axios        | HTTP requests to backend                |
-| Framer Motion| Smooth animations                       |
 | React Markdown | Render lesson content beautifully     |
        
 
@@ -119,11 +118,10 @@ Ai-App-Learner/
 ---
 
 ## 🎯 Future Scope
-
-- 🌍 Add support for multiple languages!
 - 🔄 Improve download/export features (PDF, Markdown).
 - 📊 Analytics for generated content.
 - 🧑‍🏫 Educator dashboard with save/share templates.
+- 🔔 Notifications for login and register and content generation
 
 ---
 
