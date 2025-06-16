@@ -16,22 +16,31 @@ const MainPage = () => {
     const [isLoading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
 
-    const prompt = `You are an AI tutor designed to help a student learn. Based on the following inputs, create a comprehensive and easy-to-understand study guide or explanation for a student:
-        Topic: ${topic}
-        Grade Level: ${grade}
-        Main Question/Focus: ${question || `Explain everything about ${topic}.`}
-        Key Learning Objectives: ${objectives || `Provide a short description of ${topic}.`}
-        Assessment Goal: ${assessment || `Prepare me for a question on ${topic}.`}
+    const prompt = `You are an expert AI lesson planner.
 
-        Your output should be a detailed explanation of the topic, breaking it down into key concepts. Include:
-        - A clear introduction to the topic.
-        - Simple explanations of core ideas.
-        - Relevant examples to illustrate concepts.
-        - Key vocabulary definitions.
-        - A summary of the main points.
-        - A relevant practice question or activity related to the assessment goal.
+Generate a structured lesson plan for a classroom teacher based on the following inputs:
 
-        Please format your response using Markdown for clear headings, bullet points, bold text, and code blocks (if applicable for the topic). Aim for a friendly and encouraging tone suitable for a student.`;
+Topic: ${topic}
+Grade Level: ${grade}
+Learning Objective: ${objectives || `Teach the core concepts of ${topic}.`}
+Main Question/Focus: ${question || `What is ${topic}?`}
+Assessment Goal: ${assessment || `Evaluate if the student has understood ${topic}.`}
+
+Your output should follow this format:
+
+1. **Lesson Title**
+2. **Grade Level**
+3. **Objective**
+4. **Materials Needed**
+5. **Warm-up Activity**
+6. **Main Instruction (with timing if possible)**
+7. **Examples / Demonstration**
+8. **Practice Activity**
+9. **Assessment Questions**
+10. **Conclusion / Wrap-up**
+
+Use Markdown for formatting. Make it clear, well-structured, and suitable for a teacher to directly use in class.
+`;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
