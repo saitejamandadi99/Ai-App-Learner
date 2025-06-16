@@ -11,7 +11,6 @@ const authMiddleware = async (req, res, next) => {
 
       
       req.user = await User.findById(decoded.id).select('-password');
-      console.log('authMiddleware → req.user:', req.user);
 
 
       if (!req.user) {

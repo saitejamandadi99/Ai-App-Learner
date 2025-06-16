@@ -16,7 +16,6 @@ router.post('/generate', authMiddleware, async (req, res)=>{
     try {
         const result = await model.generateContent(prompt);
         const response = result.response;
-        console.log('AI Response:', response);
         const text = response.text();
         if (!text) {
             return res.status(500).json({message: 'Failed to generate lesson plan. Please try again.'});
@@ -44,7 +43,7 @@ router.post('/generate', authMiddleware, async (req, res)=>{
 
 router.get('/history', authMiddleware, async(req, res)=>{
     try{
-        const history = await History.find({userId: req.user._id}).sort({createdAt:-1})
+        const history = await History.find({userId: req.user._id}).sort({createdAt:-1}) // sorted by creation date in descending order
         res.status(200).json({message: 'History fetched successfully', history: history});
 
     }

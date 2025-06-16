@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const e = require('express');
 const jwt = require('jsonwebtoken');
 
+
+
 //register a new user
 const registerUser = async (req, res) =>{
     const {email, password, name } = req.body;
